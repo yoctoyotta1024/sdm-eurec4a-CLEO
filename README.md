@@ -1,7 +1,7 @@
 <!-- /*
  * ----- CLEO -----
  * File: README.md
- * Project: CLEO-sdm-eurec4a
+ * Project: sdm-eurec4a-CLEO
  * Created Date: 2023/01/12 (yyyy/mm/dd)
  * Author: Clara Bayley (CB)
  * Additional Contributors: Nils Niebaum (NN)
@@ -15,15 +15,17 @@
  * Copyright (c) 2023 MPI-M, Clara Bayley
  */ -->
 
-# CLEO-sdm-eurec4a
+# sdm-eurec4a-CLEO
 
 This is a fork of the original [CLEO](https://github.com/yoctoyotta1024/CLEO) repository created by Clara Bayley.
+And then forked again from [CLEO-sdm-eurec4a](https://github.com/nilsnevertree/CLEO-sdm-eurec4a) repository by Nils Niebaum.
+
 ## Cloning this repo
 To make this repository work properly, make sure to not just simply clone the repository, but clone it into the directory ``CLEO`` in your ``$Home`` directory.
 This makes everything much easier!
 
 ````bash
-git clone https://github.com/nilsnevertree/CLEO-sdm-eurec4a ${HOME}/CLEO
+git clone https://github.com/yoctoyotta1024/sdm-eurec4a-CLEO ${HOME}/CLEO
 ````
 
 # Original CLEO part
