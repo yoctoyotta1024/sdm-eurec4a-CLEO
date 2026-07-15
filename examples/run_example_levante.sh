@@ -8,7 +8,7 @@
 #SBATCH --time=00:10:00
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=bm1183
+#SBATCH --account=mh1126
 #SBATCH --output=./runexample_out.%j.out
 #SBATCH --error=./runexample_err.%j.out
 
@@ -36,7 +36,7 @@ sdm_eurec4a_cleo_env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 python=${sdm_eurec4a_cleo_env}/bin/python3
 enabledebug=false
 make_clean=false
-yacyaxtroot=/work/bm1183/m300950/yacyaxt
+yacyaxtroot=/work/mh1126/m300950/yacyaxt
 stacksize_limit=204800 # ulimit -s [stacksize_limit] (kB)
 
 if [ "${buildtype}" == "cuda" ]

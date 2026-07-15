@@ -9,7 +9,7 @@
 #SBATCH --time=00:30:00
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=bm1183
+#SBATCH --account=mh1126
 #SBATCH --output=./compile_run_cleo_out.%j.out
 #SBATCH --error=./compile_run_cleo_err.%j.out
 
