@@ -18,7 +18,7 @@ we suggest in our environment.yml file, e.g. using Conda/Micromamba:
 .. code-block:: console
 
   $ micromamba create --file=environment.yml
-  $ micromamba activate cleoenv
+  $ micromamba activate sdm_eurec4a_cleo_env
 
 *Note*: on Levante you need to first load an openmpi package to install mpi4py, e.g. via
 ```module load openmpi/4.1.2-gcc-11.2.0```

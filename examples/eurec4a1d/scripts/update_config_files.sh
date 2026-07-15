@@ -52,9 +52,9 @@ rawdirectory=${path2data}/
 
 
 ### ------------------ Load Modules -------------------- ###
-cleoenv=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
-python=${cleoenv}/bin/python3
-source activate ${cleoenv}
+sdm_eurec4a_cleo_env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
+python=${sdm_eurec4a_cleo_env}/bin/python3
+source activate ${sdm_eurec4a_cleo_env}
 ### ---------------------------------------------------- ###
 
 ### -------------------- print inputs ------------------ ###

@@ -34,7 +34,7 @@ You will need to configure ``examples/run_example_levante.sh`` in the following 
 
 * Use your Conda (or Micromamba) environment:
 
-  replace the path in the line stating ``cleoenv=[…]`` with the path to your environment.
+  replace the path in the line stating ``sdm_eurec4a_cleo_env=[…]`` with the path to your environment.
 
 * Use your Python version:
 

@@ -32,8 +32,8 @@ executables="$6"
 pythonscript=$7
 script_args="$8"
 
-cleoenv=/work/bm1183/m300950/bin/envs/cleoenv
-python=${cleoenv}/bin/python3
+sdm_eurec4a_cleo_env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+python=${sdm_eurec4a_cleo_env}/bin/python3
 enabledebug=false
 make_clean=false
 yacyaxtroot=/work/bm1183/m300950/yacyaxt

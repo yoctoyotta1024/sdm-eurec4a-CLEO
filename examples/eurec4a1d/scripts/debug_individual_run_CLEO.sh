@@ -86,11 +86,10 @@ dataset_path="${path2inddir}/${dataset_name}"
 
 
 ### ------------------ Load Modules -------------------- ###
-env=/work/mh1126/m301096/conda/envs/sdm_pysd_env312
+env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 mamba activate ${env}
 spack load cmake@3.23.1%gcc
 # module load python3/2022.01-gcc-11.2.0
-source activate ${cleoenv}
 ### ---------------------------------------------------- ###
 
 ### -------------------- print inputs ------------------ ###
