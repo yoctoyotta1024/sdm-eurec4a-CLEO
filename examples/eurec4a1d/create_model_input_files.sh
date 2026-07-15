@@ -36,12 +36,12 @@ microphysics="collision_condensation"
 # microphysics="coalbure_condensation_large"
 # microphysics="coalbure_condensation_cke"
 
-path2CLEO=${HOME}/CLEO/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 
 
 
 path2eurec4a1d=${path2CLEO}examples/eurec4a1d/
-path2sdmeurec4a=${HOME}/repositories/sdm-eurec4a/
+path2sdmeurec4a=/home/m/m300950/rain-evap-nils/sdm-eurec4a/
 
 path2data=${path2CLEO}data/output_v4.2/
 path2input=${path2sdmeurec4a}data/model/input_v4.2/

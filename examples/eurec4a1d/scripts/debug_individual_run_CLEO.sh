@@ -27,7 +27,7 @@ echo "date: $(date)"
 echo "============================================"
 
 
-path2CLEO=${HOME}/CLEO/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 path2build=${path2CLEO}/build_eurec4a1d/
 path2eurec4a1d=${path2CLEO}/examples/eurec4a1d/
 microphysics=condensation

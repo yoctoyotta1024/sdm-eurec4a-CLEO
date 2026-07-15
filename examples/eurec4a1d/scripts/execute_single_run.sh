@@ -33,7 +33,7 @@ spack load cmake@3.23.1%gcc
 ### ---------------------------------------------------- ###
 
 microphysics="null_microphysics"
-path2CLEO=${HOME}/CLEO
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
 path2data=${path2CLEO}/data/output_v4.1/
 path2build=${path2CLEO}/build_eurec4a1d_openmp/
 
@@ -47,7 +47,7 @@ echo "init path2data: ${path2data}"          # path to the data directory with s
 echo "init path2build: ${path2build}"        # path to the build directory
 
 # some example paths which could be used for testing
-# path2CLEO=${HOME}/CLEO/
+# path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 # path2build=${path2CLEO}/build_eurec4a1d/
 # path2data=${path2CLEO}/data/test/
 

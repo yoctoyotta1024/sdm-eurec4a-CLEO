@@ -27,7 +27,7 @@ echo "git branch: $(git symbolic-ref --short HEAD)"
 echo "============================================"
 
 # set paths
-path2CLEO=${HOME}/CLEO/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 path2data=${path2CLEO}data/debug_output/
 path2eurec4a1d=${path2CLEO}examples/eurec4a1d/
 subdir_pattern=cluster_

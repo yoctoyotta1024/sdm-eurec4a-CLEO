@@ -25,7 +25,7 @@ To make this repository work properly, make sure to not just simply clone the re
 This makes everything much easier!
 
 ````bash
-git clone https://github.com/yoctoyotta1024/sdm-eurec4a-CLEO ${HOME}/CLEO
+git clone https://github.com/yoctoyotta1024/sdm-eurec4a-CLEO /your/path/to/sdm-eurec4a-CLEO
 ````
 
 # Original CLEO part
