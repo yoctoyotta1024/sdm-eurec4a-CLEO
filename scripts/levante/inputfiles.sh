@@ -17,8 +17,8 @@
 ### ----  and paths for CLEO and build directories  ---- ###
 path2CLEO=${2:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO}
 path2scripts=${path2CLEO}/scripts
-condaenv=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
-python=${condaenv}/bin/python
+mambaenv=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+python=${mambaenv}/bin/python
 ### ---------------------------------------------------- ###
 
 configfile=$1

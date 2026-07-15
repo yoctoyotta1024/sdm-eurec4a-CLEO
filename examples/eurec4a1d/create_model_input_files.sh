@@ -22,10 +22,10 @@ source ${HOME}/.bashrc
 ### ------------------ Load Modules -------------------- ###
 env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 # module purge
-conda activate ${env}
+micromamba activate ${env}
 
-pythonpath=${env}/bin/python
-echo "Using Python from: $(which python)"
+python=${env}/bin/python
+echo "Using Python: ${python}"
 ### ---------------------------------------------------- ###
 
 ### ------------------ Input Parameters ---------------- ###
@@ -90,5 +90,4 @@ echo "breakup file path: ${breakup_file_path}"
 echo "============================================"
 
 ### ---- Creation of init files
-
-mpirun -np 40 python ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}
+srun ${python} ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}

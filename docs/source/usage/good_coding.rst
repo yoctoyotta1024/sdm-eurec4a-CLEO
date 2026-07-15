@@ -18,7 +18,7 @@ or
 
 .. code-block:: console
 
-  $ micromamba env create --file=environment.yml
+  $ micromamba create --file=environment.yml
 
 And then activate this environment everytime you use CLEO, e.g.
 

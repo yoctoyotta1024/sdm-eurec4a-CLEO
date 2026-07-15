@@ -87,7 +87,7 @@ dataset_path="${path2inddir}/${dataset_name}"
 
 ### ------------------ Load Modules -------------------- ###
 env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
-mamba activate ${env}
+micromamba activate ${env}
 spack load cmake@3.23.1%gcc
 # module load python3/2022.01-gcc-11.2.0
 ### ---------------------------------------------------- ###

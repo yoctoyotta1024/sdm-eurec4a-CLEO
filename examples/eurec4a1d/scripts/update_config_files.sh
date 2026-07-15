@@ -54,7 +54,7 @@ rawdirectory=${path2data}/
 ### ------------------ Load Modules -------------------- ###
 sdm_eurec4a_cleo_env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 python=${sdm_eurec4a_cleo_env}/bin/python3
-source activate ${sdm_eurec4a_cleo_env}
+micromamba activate ${sdm_eurec4a_cleo_env}
 ### ---------------------------------------------------- ###
 
 ### -------------------- print inputs ------------------ ###

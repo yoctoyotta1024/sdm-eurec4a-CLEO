@@ -30,10 +30,9 @@ set -e
 module purge
 spack unload --all
 
-
-
+# source ${HOME}/.bashrc
 # env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
-# conda activate ${env}
+# micromamba activate ${env}
 ### ---------------------------------------------------- ###
 
 # the following paths will be given by the master submit scrip, which sets the slurm array size in this script too.
