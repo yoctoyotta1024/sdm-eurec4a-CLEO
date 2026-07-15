@@ -6,7 +6,7 @@
 #SBATCH --time=00:10:00
 #SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
+#SBATCH --account=mh1126
 #SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/create_init_files/mpi4py/.%j_out.out
 #SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/create_init_files/mpi4py/.%j_err.out
 
@@ -20,7 +20,7 @@ echo "============================================"
 source ${HOME}/.bashrc
 
 ### ------------------ Load Modules -------------------- ###
-env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
+env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 # module purge
 conda activate ${env}
 

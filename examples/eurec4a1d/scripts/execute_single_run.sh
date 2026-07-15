@@ -7,7 +7,7 @@
 #SBATCH --time=00:15:00
 #SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
+#SBATCH --account=mh1126
 #SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO_single/%j_out.log
 #SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO_single/%j_err.log
 
@@ -27,7 +27,7 @@ echo "============================================"
 
 ### ------------------ Load Modules -------------------- ###
 source ${HOME}/.bashrc
-env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
+env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 conda activate ${env}
 spack load cmake@3.23.1%gcc
 ### ---------------------------------------------------- ###

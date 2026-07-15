@@ -7,7 +7,7 @@
 #SBATCH --time=01:00:00
 #SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
+#SBATCH --account=mh1126
 #SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/eurec4a1d_update_config.%j_out.out
 #SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/eurec4a1d_update_config.%j_err.out
 
@@ -52,7 +52,7 @@ rawdirectory=${path2data}/
 
 
 ### ------------------ Load Modules -------------------- ###
-sdm_eurec4a_cleo_env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
+sdm_eurec4a_cleo_env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 python=${sdm_eurec4a_cleo_env}/bin/python3
 source activate ${sdm_eurec4a_cleo_env}
 ### ---------------------------------------------------- ###
