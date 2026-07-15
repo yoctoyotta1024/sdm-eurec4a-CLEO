@@ -149,7 +149,7 @@ subfolder_prefix = "cluster_"
 
 # from sdm_eurec4a import RepositoryPath
 # path2sdm_eurec4a = RepositoryPath('levante').data_dir
-# input_dir_path = path2sdm_eurec4a / "model/input_v4.0"
+# input_dir_path = path2sdm_eurec4a / "model/input_v4.2"
 
 
 class Capturing(list):
