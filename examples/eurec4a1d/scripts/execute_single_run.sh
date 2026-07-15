@@ -8,8 +8,8 @@
 #SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO_single/%j_out.log
-#SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO_single/%j_err.log
+#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/%j_out.log
+#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/%j_err.log
 
 ### ---------------------------------------------------- ###
 ### ------------------ Input Parameters ---------------- ###
