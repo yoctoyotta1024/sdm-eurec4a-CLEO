@@ -1,5 +1,5 @@
 # ----- CLEO -----
-# File: eurec4a1d_config.yaml
+# File: eurec4a1d_config_stationary.yaml
 # Project: config
 # Created Date: Thursday 18th April 2024
 # Author: Clara Bayley (CB)
@@ -37,7 +37,7 @@ timesteps:
 
 ### Initialisation Parameters ###
 inputfiles:
-  constants_filename: /home/m/m301096/CLEO/libs/cleoconstants.hpp # name of file for values of physical constants
+  constants_filename: /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/libs/cleoconstants.hpp # name of file for values of physical constants
   grid_filename: None                                             # binary filename for initialisation of GBxs / GbxMaps
 
 initsupers:

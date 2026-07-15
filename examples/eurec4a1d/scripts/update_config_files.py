@@ -5,7 +5,7 @@ This script is used to run the EUREC4A1D executable. It is called by the
 1. path2CLEO: Path to the CLEO repository
 2. path2build: Path to the build directory
 3. raw_dir_individual: Path to the directory which contains the config files and raw data directory.
-   Needs to contain 'config/eurec4a_config.yaml'. Output will be stored in /eurec4a1d_sol.zarr.
+   Needs to contain 'config/eurec4a1d_config.yaml'. Output will be stored in /eurec4a1d_sol.zarr.
    raw_dir_individual
     ├── config
     │   └── eurec4a1d_config.yaml   <- NEEDS TO EXIST
