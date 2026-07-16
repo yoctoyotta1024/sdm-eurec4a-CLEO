@@ -27,9 +27,8 @@ echo "git branch: $(git symbolic-ref --short HEAD)"
 echo "============================================"
 
 # set paths
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
-path2data=${path2CLEO}data/debug_output/
-path2eurec4a1d=${path2CLEO}examples/eurec4a1d/
+path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/debug_output/
+path2eurec4a1d=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/examples/eurec4a1d/
 subdir_pattern=cluster_
 
 # python script to run
@@ -59,7 +58,6 @@ micromamba activate ${sdm_eurec4a_cleo_env}
 
 ### -------------------- print inputs ------------------ ###
 echo "----- Update Config Files -----"
-echo "path2CLEO: ${path2CLEO}"
 echo "pythonscript: ${pythonscript}"
 echo "---------------------------"
 ### --------------------------------------------------- ###
