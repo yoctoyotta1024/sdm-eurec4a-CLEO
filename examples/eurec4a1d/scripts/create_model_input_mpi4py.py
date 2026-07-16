@@ -15,6 +15,7 @@ import argparse
 from mpi4py import MPI
 import matplotlib.pyplot as plt
 
+sys.path.append("/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO")
 from pySD import editconfigfile
 from pySD.gbxboundariesbinary_src import create_gbxboundaries as cgrid
 from pySD.gbxboundariesbinary_src import read_gbxboundaries as rgrid
@@ -451,7 +452,7 @@ for step, cloud_id in enumerate(sublist_cloud_ids):
     with Capturing() as thermo_info:
         cthermo.write_thermodynamics_binary(
             thermofiles=thermodynamics_file_path,
-            thermogen=thermodynamics_generator,
+            thermodyngen=thermodynamics_generator,
             config_filename=config_file_path,
             constants_filename=constants_file_path,
             grid_filename=grid_file_path,

@@ -1088,7 +1088,7 @@ class SplittedLapseRates:
 
         return THERMODATA
 
-    def generate_thermo(self, gbxbounds, ndims, ntime):
+    def generate_thermodyn(self, gbxbounds, ndims, ntime):
         zfulls, xfulls, yfulls = rgrid.fullcoords_forallgridboxes(gbxbounds, ndims)
 
         temperature = self.temperature(zfulls)
