@@ -45,10 +45,3 @@ if(CLEO_NO_EXAMPLES)
 else()
   add_subdirectory(examples EXCLUDE_FROM_ALL)
 endif()
-
-# add directory for roughpaper / quick tests
-if(CLEO_NO_ROUGHPAPER)
-  message(STATUS "CLEO excluding roughpaper CLEO_NO_ROUGHPAPER=${CLEO_NO_ROUGHPAPER}")
-else()
-  add_subdirectory(roughpaper EXCLUDE_FROM_ALL)
-endif()
