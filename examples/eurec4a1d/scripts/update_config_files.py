@@ -44,7 +44,7 @@ path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec
 time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d-%H%M%S")
 
 log_file_dir = (
-    path2data / "logfiles" / "update_config" / f"update_config_files/{time_str}"
+    path2data / "logfiles" / "update_config" / "update_config_files" / f"log_{time_str}"
 )
 log_file_dir.mkdir(exist_ok=True, parents=True)
 log_file_path = log_file_dir / f"{rank}.log"

@@ -7,8 +7,8 @@
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/.%j_out.out
-#SBATCH --error=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/.%j_err.out
+#SBATCH --output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/log.%j_out.out
+#SBATCH --error=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/log.%j_err.out
 
 ### --------------------- Version --------------------- ###
 echo "git hash: $(git rev-parse HEAD)"

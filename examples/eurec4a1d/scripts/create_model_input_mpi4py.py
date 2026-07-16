@@ -51,9 +51,9 @@ path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec
 logging.basicConfig(level=logging.INFO)
 time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d-%H%M%S")
 
-log_file_dir = path2data / "logfiles" / "create_init_files" / "mpi4py" / f"{time_str}"
+log_file_dir = path2data / "logfiles" / "create_init_files" / "mpi4py" / f"log_{time_str}"
 log_file_dir.mkdir(exist_ok=True, parents=True)
-log_file_path = log_file_dir / f"{rank}.log"
+log_file_path = log_file_dir / f"log_{rank}.log"
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
