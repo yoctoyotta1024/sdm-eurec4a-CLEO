@@ -90,4 +90,5 @@ echo "breakup file path: ${breakup_file_path}"
 echo "============================================"
 
 ### ---- Creation of init files
+echo "srun ${python} ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}"
 srun ${python} ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}
