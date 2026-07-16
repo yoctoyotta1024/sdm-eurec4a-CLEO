@@ -52,17 +52,19 @@ with the error ``RuntimeError: cannot load MPI library``.
 If so, you need to re-install ``mpi4py`` with the correct links to Levante's openmpi modules:
 
 ``` bash
+### load relevant packages on Levante
 $ module load python3 gcc/11.2.0-gcc-11.2.0 openmpi/4.1.2-gcc-11.2.0
 $ export MPI4PY_BUILD_MPICC=/sw/spack-levante/openmpi-4.1.2-mnmady/bin/mpicc
 $ export MPI4PY_BUILD_MPILD=/sw/spack-levante/openmpi-4.1.2-mnmady/lib
 
+### uninstall and re-install mpi4py
 $ mamba install mpi=*=*
 $ python -m pip uninstall mpi4py
 $ python -m pip install --no-cache-dir --no-binary=mpi4py mpi4py
 
 ### (optional but good to remove if they've been installed)
-$ rm  /work/bm1183/m300950/bin/envs/superdrops-in-action/lib/libmpi.so
-$ rm  /work/bm1183/m300950/bin/envs/superdrops-in-action/lib/libmpi.so.40
+$ rm  /path/to/your/env/sdm_eurec4a_cleo_env/lib/libmpi.so
+$ rm  /path/to/your/env/sdm_eurec4a_cleo_env/lib/libmpi.so.40
 
 ### check the installation worked
 $ python -c 'import ctypes.util; print(ctypes.util.find_library("mpi"))'
