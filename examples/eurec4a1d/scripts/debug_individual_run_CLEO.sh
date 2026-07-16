@@ -27,11 +27,10 @@ echo "date: $(date)"
 echo "============================================"
 
 
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
-path2build=${path2CLEO}/build_eurec4a1d/
-path2eurec4a1d=${path2CLEO}/examples/eurec4a1d/
 microphysics=condensation
-path2data=${path2CLEO}/data/debug_output/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
+path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
+path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/debug_output/
 
 ### ---------- Setup for the EUREC4A1D model ---------- ###
 

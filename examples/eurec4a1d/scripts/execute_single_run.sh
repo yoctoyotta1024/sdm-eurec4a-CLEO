@@ -34,8 +34,8 @@ spack load cmake@3.23.1%gcc
 
 microphysics="null_microphysics"
 path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
-path2data=${path2CLEO}/data/output_v4.1/
-path2build=${path2CLEO}/build_eurec4a1d_openmp/
+path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.1/
+path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_openmp/
 
 
 path2clouddata=${path2data}/${microphysics}/cluster_81
@@ -48,7 +48,7 @@ echo "init path2build: ${path2build}"        # path to the build directory
 
 # some example paths which could be used for testing
 # path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
-# path2build=${path2CLEO}/build_eurec4a1d/
+# path2build=${path2CLEO}/build_test/
 # path2data=${path2CLEO}/data/test/
 
 # relative paths and names within an individual cloud directory
