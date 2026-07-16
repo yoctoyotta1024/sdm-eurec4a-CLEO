@@ -58,6 +58,7 @@ $ export MPI4PY_BUILD_MPICC=/sw/spack-levante/openmpi-4.1.2-mnmady/bin/mpicc
 $ export MPI4PY_BUILD_MPILD=/sw/spack-levante/openmpi-4.1.2-mnmady/lib
 
 ### uninstall and re-install mpi4py
+$ mamba activate sdm_eurec4a_cleo_env
 $ mamba install mpi=*=*
 $ python -m pip uninstall mpi4py
 $ python -m pip install --no-cache-dir --no-binary=mpi4py mpi4py
