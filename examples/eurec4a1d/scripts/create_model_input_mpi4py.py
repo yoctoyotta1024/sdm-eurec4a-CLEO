@@ -45,13 +45,13 @@ except Exception:
     number_ranks = 1
 
 path2CLEO = Path("/home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
-path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "data"
+path2logfiles = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "data" / "logfiles"
 
 # logging configure
 logging.basicConfig(level=logging.INFO)
 time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d-%H%M%S")
 
-log_file_dir = path2data / "logfiles" / "create_init_files" / "mpi4py" / f"log_{time_str}"
+log_file_dir = path2logfiles / "create_init_files" / "mpi4py" / f"log_{time_str}"
 log_file_dir.mkdir(exist_ok=True, parents=True)
 log_file_path = log_file_dir / f"log_{rank}.log"
 
@@ -143,7 +143,7 @@ subfolder_prefix = "cluster_"
 
 # # NOTE: test setup for local testing
 
-# output_dir_path = path2data / "debug_output"
+# output_dir_path = output_dir_path / "debug_output"
 # output_dir_path.mkdir(exist_ok=True, parents=True)
 
 # from sdm_eurec4a import RepositoryPath

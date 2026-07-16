@@ -37,6 +37,7 @@ except Exception:
     npro = 1
 
 path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "data"
+path2logfiles = path2data / "logfiles"
 
 # === logging ===
 # create log file
@@ -44,7 +45,7 @@ path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec
 time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d-%H%M%S")
 
 log_file_dir = (
-    path2data / "logfiles" / "update_config" / "update_config_files" / f"log_{time_str}"
+    path2logfiles / "update_config" / "update_config_files" / f"log_{time_str}"
 )
 log_file_dir.mkdir(exist_ok=True, parents=True)
 log_file_path = log_file_dir / f"{rank}.log"
