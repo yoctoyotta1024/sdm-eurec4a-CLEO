@@ -9,8 +9,8 @@
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_debugsingle/%A/%A_%a_out.out
-#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_debugsingle/%A/%A_%a_err.out
+#SBATCH --output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_debugsingle/%A/log_%A_%a_out.out
+#SBATCH --error=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_debugsingle/%A/log_%A_%a_err.out
 #SBATCH --array=0-127
 
 ### ---------------------------------------------------- ###
@@ -27,11 +27,9 @@ echo "date: $(date)"
 echo "============================================"
 
 
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
-path2build=${path2CLEO}/build_eurec4a1d/
-path2eurec4a1d=${path2CLEO}/examples/eurec4a1d/
 microphysics=condensation
-path2data=${path2CLEO}/data/debug_output/
+path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
+path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/debug_output/
 
 ### ---------- Setup for the EUREC4A1D model ---------- ###
 
@@ -95,7 +93,6 @@ spack load cmake@3.23.1%gcc
 ### -------------------- print inputs ------------------ ###
 echo "============================================"
 echo -e "buildtype: \t${buildtype}"
-echo -e "path2CLEO: \t${path2CLEO}"
 echo -e "path2build: \t${path2build}"
 echo -e "enableyac: \t${enableyac}"
 echo "--------------------------------------------"
@@ -111,10 +108,7 @@ echo "============================================"
 
 
 # make sure paths are directories and executable is a file
-if [ ! -d "$path2CLEO" ]; then
-    echo "Invalid path to CLEO"
-    exit 1
-elif [ ! -d "$path2build" ]; then
+if [ ! -d "$path2build" ]; then
     echo "Invalid path to build"
     exit 1
 elif [ ! -d "$path2inddir" ]; then

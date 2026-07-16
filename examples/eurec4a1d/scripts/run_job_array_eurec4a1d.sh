@@ -8,8 +8,8 @@
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO/%A/%A_%a_out.out
-#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO/%A/%A_%a_err.out
+#SBATCH --output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO/%A/log_%A_%a_out.out
+#SBATCH --error=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO/%A/log_%A_%a_err.out
 #SBATCH --array=0-127
 
 ### ---------------------------------------------------- ###

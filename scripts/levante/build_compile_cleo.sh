@@ -24,8 +24,8 @@ spack unload --all
 ### ---------------------------------------------------- ###
 buildtype=$1                                   # "serial", "threads", "openmp" or "cuda"
 compilername=${2:-intel}                       # "intel" or "gcc"
-path2CLEO=${3:-${HOME}/CLEO}                   # must be absolute path
-path2build=${4:-${path2CLEO}/build}            # should be absolute path
+path2sdmeurec4aCLEO=${3:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO} # must be absolute path
+path2build=${4:-${path2sdmeurec4aCLEO}/build}            # should be absolute path
 build_flags=${5:-"-DCLEO_COUPLED_DYNAMICS="""} # CLEO_BUILD_FLAGS
 executables=${6:-"cleocoupledsdm"}             # list of executables to compile or "NONE"
 enabledebug=${7:-false}                        # == "true" or otherwise false
@@ -35,19 +35,19 @@ make_clean=${10:-true}                         # == "true" or otherwise false
 ### ---------------------------------------------------- ###
 
 ### ------------------ check arguments ----------------- ###
-if [ "${path2CLEO}" == "" ]
+if [ "${path2sdmeurec4aCLEO}" == "" ]
 then
   echo "Please provide path to CLEO source directory"
   exit 1
 fi
-source ${path2CLEO}/scripts/levante/bash/src/check_inputs.sh
-check_args_not_empty "${buildtype}" "${compilername}" "${enabledebug}" "${path2CLEO}" "${path2build}" "${enableyac}"
+source ${path2sdmeurec4aCLEO}/scripts/levante/bash/src/check_inputs.sh
+check_args_not_empty "${buildtype}" "${compilername}" "${enabledebug}" "${path2sdmeurec4aCLEO}" "${path2build}" "${enableyac}"
 ### ---------------------------------------------------- ###
 
 ### ----------------- export inputs -------------------- ###
 export CLEO_BUILDTYPE=${buildtype}
 export CLEO_COMPILERNAME=${compilername}
-export CLEO_PATH2CLEO=${path2CLEO}
+export CLEO_PATH2CLEO=${path2sdmeurec4aCLEO}
 export CLEO_PATH2BUILD=${path2build}
 export CLEO_BUILD_FLAGS=${build_flags}
 export CLEO_ENABLEDEBUG=${enabledebug}

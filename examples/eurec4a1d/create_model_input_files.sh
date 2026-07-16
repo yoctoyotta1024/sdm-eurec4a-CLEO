@@ -7,8 +7,8 @@
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/.%j_out.out
-#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/.%j_err.out
+#SBATCH --output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/log.%j_out.out
+#SBATCH --error=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/log.%j_err.out
 
 ### --------------------- Version --------------------- ###
 echo "git hash: $(git rev-parse HEAD)"
@@ -36,25 +36,17 @@ microphysics="collision_condensation"
 # microphysics="coalbure_condensation_large"
 # microphysics="coalbure_condensation_cke"
 
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
-
-
-
-path2eurec4a1d=${path2CLEO}examples/eurec4a1d/
-path2sdmeurec4a=/home/m/m300950/rain-evap-nils/sdm-eurec4a/
-
-path2data=${path2CLEO}data/output_v4.2/
-path2input=${path2sdmeurec4a}data/model/input_v4.2/
-path2output=${path2data}/${microphysics}
+path2eurec4a1d=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/examples/eurec4a1d/
+path2input=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a/data/model/input_v4.2/
+path2output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.2/${microphysics}
 
 echo "============================================"
-echo "path2CLEO: ${path2CLEO}"
-echo "path2data: ${path2data}"
-echo "path2eurec4a1d: ${path2eurec4a1d}"
-echo "path2sdmeurec4a: ${path2sdmeurec4a}"
 echo "microphysics: ${microphysics}"
+echo "path2eurec4a1d: ${path2eurec4a1d}"
+echo "path2input: ${path2input}"
+echo "path2output: ${path2output}"
 
-path2pythonscript=${path2eurec4a1d}scripts/create_model_input_mpi4py.py
+path2pythonscript=${path2eurec4a1d}/scripts/create_model_input_mpi4py.py
 echo "path2pythonscript: ${path2pythonscript}"
 
 echo "============================================"

@@ -2,8 +2,7 @@
 This script is used to run the EUREC4A1D executable. It is called by the
 `eurec4a1d_run_executable.sh` script. The script takes the following arguments:
 
-1. path2CLEO: Path to the CLEO repository
-2. path2build: Path to the build directory
+1. path2data: Path to directory to write logfiles and model output within
 3. raw_dir_individual: Path to the directory which contains the config files and raw data directory.
    Needs to contain 'config/eurec4a1d_config.yaml'. Output will be stored in /eurec4a1d_sol.zarr.
    raw_dir_individual
@@ -37,17 +36,23 @@ except Exception:
     rank = 0
     npro = 1
 
-path2CLEO = Path("home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
+path2data = (
+    Path("/work")
+    / "mh1126"
+    / "m300950"
+    / "rain-evap-nils"
+    / "sdm-eurec4a-CLEO"
+    / "data"
+)
+path2logfiles = path2data / "logfiles"
 
-path2build = path2CLEO / "build_eurec4a1d"
-path2eurec4a1d = path2CLEO / "examples/eurec4a1d"
 # === logging ===
 # create log file
 
 time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d-%H%M%S")
 
 log_file_dir = (
-    path2eurec4a1d / "logfiles" / "update_config" / f"update_config_files/{time_str}"
+    path2logfiles / "update_config" / "update_config_files" / f"log_{time_str}"
 )
 log_file_dir.mkdir(exist_ok=True, parents=True)
 log_file_path = log_file_dir / f"{rank}.log"
@@ -113,7 +118,7 @@ logging.info(f"Enviroment: {sys.prefix}")
 # sub_dir_pattern = args.sub_dir_pattern
 
 
-data_dir = path2CLEO / "data/output_v4.1/null_microphysics"
+data_dir = path2data / "output_v4.1" / "null_microphysics"
 config_file_relative_path = "config/eurec4a1d_config.yaml"
 sub_dir_pattern = "cluster*"
 

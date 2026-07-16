@@ -8,8 +8,8 @@
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/%j_out.log
-#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/%j_err.log
+#SBATCH --output=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/log_%j_out.log
+#SBATCH --error=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/log_%j_err.log
 
 ### ---------------------------------------------------- ###
 ### ------------------ Input Parameters ---------------- ###
@@ -33,23 +33,23 @@ spack load cmake@3.23.1%gcc
 ### ---------------------------------------------------- ###
 
 microphysics="null_microphysics"
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
-path2data=${path2CLEO}/data/output_v4.1/
-path2build=${path2CLEO}/build_eurec4a1d_openmp/
+path2sdmeurec4aCLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
+path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.1/
+path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_openmp/
 
 
 path2clouddata=${path2data}/${microphysics}/cluster_81
 
 # the following paths will be given by the master submit scrip, which sets the slurm array size in this script too.
 echo "init microphysics: ${microphysics}"    # microphysics setup
-echo "init path2CLEO: ${path2CLEO}"          # path to the CLEO directory
+echo "init path2sdmeurec4aCLEO: ${path2sdmeurec4aCLEO}"          # path to the CLEO directory
 echo "init path2data: ${path2data}"          # path to the data directory with subdirectories for each microphysics setup
 echo "init path2build: ${path2build}"        # path to the build directory
 
 # some example paths which could be used for testing
-# path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
-# path2build=${path2CLEO}/build_eurec4a1d/
-# path2data=${path2CLEO}/data/test/
+# path2sdmeurec4aCLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
+# path2build=${path2sdmeurec4aCLEO}/build_test/
+# path2data=${path2sdmeurec4aCLEO}/data/test/
 
 # relative paths and names within an individual cloud directory
 # individual directory
@@ -80,7 +80,7 @@ echo "### ---------------------------------------------------- ###"
 
 ### ---------------------------------------------------- ###
 echo "Validate all paths before running the model"
-if [ ! -d "$path2CLEO" ]; then
+if [ ! -d "$path2sdmeurec4aCLEO" ]; then
     echo "Invalid path to CLEO"
     exit 1
 elif [ ! -d "$path2build" ]; then
@@ -139,7 +139,7 @@ spack unload --all
 ### ----- You need to edit these lines to specify ------ ###
 ### ----- your build configuration and executables ----- ###
 ### ---------------------------------------------------- ###
-bashsrc=${path2CLEO}/scripts/bash/src
+bashsrc=${path2sdmeurec4aCLEO}/scripts/bash/src
 ### -------------------- check inputs ------------------ ###
 
 enableyac=false
@@ -147,7 +147,7 @@ buildtype="openmp" # as defined by Kokkos configuration; see below
 compilername="intel" # as defined by Kokkos configuration; see below
 stacksize_limit=204800 # ulimit -s [stacksize_limit] (kB)
 
-export CLEO_PATH2CLEO=${path2CLEO}
+export CLEO_PATH2CLEO=${path2sdmeurec4aCLEO}
 export CLEO_BUILDTYPE=${buildtype}
 export CLEO_ENABLEYAC=${enableyac}
 
