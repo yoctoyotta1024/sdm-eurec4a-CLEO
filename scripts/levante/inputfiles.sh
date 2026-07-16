@@ -8,17 +8,17 @@
 #SBATCH --time=00:05:00
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=bm1183
+#SBATCH --account=mh1126
 #SBATCH --output=./build/bin/inputfiles_out.%j.out
 #SBATCH --error=./build/bin/inputfiles_err.%j.out
 
 ### ----- You need to edit these lines to set your ----- ###
 ### ----- default compiler and python environment   ---- ###
 ### ----  and paths for CLEO and build directories  ---- ###
-path2CLEO=${2:-${HOME}/CLEO}
+path2CLEO=${2:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO}
 path2scripts=${path2CLEO}/scripts
-condaenv=/work/bm1183/m300950/bin/envs/cleoenv
-python=${condaenv}/bin/python
+mambaenv=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+python=${mambaenv}/bin/python
 ### ---------------------------------------------------- ###
 
 configfile=$1

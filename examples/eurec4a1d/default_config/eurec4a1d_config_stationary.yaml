@@ -1,5 +1,5 @@
 # ----- CLEO -----
-# File: eurec4a1d_config.yaml
+# File: eurec4a1d_config_stationary.yaml
 # Project: config
 # Created Date: Thursday 18th April 2024
 # Author: Clara Bayley (CB)
@@ -15,10 +15,6 @@
 # -----
 # File Description:
 # Configuration file for CLEO eurec4a 1-D rainshaft example.
-# Note: The inital superdroplets data read from file "initsupers_filename" can be made with
-# CLEO's pySD module (see Python script "create_initsuperdropsbinary_script.py" for usage).
-# Likewise the "grid_filename" can be made using pySD (see "create_gbxboundariesbinary_script.py"),
-# and so can the thermodynamics files when using coupled thermodynamics "fromfile".
 #
 
 ### SDM Runtime Parameters ###
@@ -37,7 +33,7 @@ timesteps:
 
 ### Initialisation Parameters ###
 inputfiles:
-  constants_filename: /home/m/m301096/CLEO/libs/cleoconstants.hpp # name of file for values of physical constants
+  constants_filename: /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/libs/cleoconstants.hpp # name of file for values of physical constants
   grid_filename: None                                             # binary filename for initialisation of GBxs / GbxMaps
 
 initsupers:

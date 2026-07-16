@@ -1,5 +1,5 @@
 # ----- CLEO -----
-# File: eurec4a1d_config.yaml
+# File: eurec4a1d_config_evolving.yaml
 # Project: config
 # Created Date: Thursday 18th April 2024
 # Author: Clara Bayley (CB)
@@ -15,27 +15,23 @@
 # -----
 # File Description:
 # Configuration file for CLEO eurec4a 1-D rainshaft example.
-# Note: The inital superdroplets data read from file "initsupers_filename" can be made with
-# CLEO's pySD module (see Python script "create_initsuperdropsbinary_script.py" for usage).
-# Likewise the "grid_filename" can be made using pySD (see "create_gbxboundariesbinary_script.py"),
-# and so can the thermodynamics files when using coupled thermodynamics "fromfile".
 #
 
 ### Initialisation Parameters ###
 inputfiles:
   constants_filename: ../libs/cleoconstants.hpp
   grid_filename:
-    /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_ddimlessGBxboundaries.dat
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_ddimlessGBxboundaries.dat
 initsupers:
   type: frombinary
-  initsupers_filename: /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessSDsinit.dat
+  initsupers_filename: /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessSDsinit.dat
   totnsupers: 512
 outputdata:
   setup_filename:
-    /home/m/m301096/CLEO/data/output/raw/no_aerosols/clusters_301/eurec4a1d_setup.txt
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output/raw/no_aerosols/clusters_301/eurec4a1d_setup.txt
   stats_filename:
-    /home/m/m301096/CLEO/data/output/raw/no_aerosols/clusters_301/eurec4a1d_stats.txt
-  zarrbasedir: /home/m/m301096/CLEO/data/output/raw/no_aerosols/clusters_301/eurec4a1d_sol.zarr
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output/raw/no_aerosols/clusters_301/eurec4a1d_stats.txt
+  zarrbasedir: /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output/raw/no_aerosols/clusters_301/eurec4a1d_sol.zarr
   maxchunk: 2500000
 domain:
   nspacedims: 1
@@ -61,13 +57,13 @@ microphysics:
 coupled_dynamics:
   type: fromfile
   press:
-    /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_press.dat
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_press.dat
   temp:
-    /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_temp.dat
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_temp.dat
   qvap:
-    /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_qvap.dat
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_qvap.dat
   qcond:
-    /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_qcond.dat
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_qcond.dat
   wvel:
-    /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_wvel.dat
-  thermo: /home/m/m301096/CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo.dat
+    /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo_wvel.dat
+  thermo: /home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d_evolving/share/eurec4a1d_dimlessthermo.dat

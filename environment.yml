@@ -1,4 +1,4 @@
-name: cleoenv
+name: sdm_eurec4a_cleo_env
 channels:
     - conda-forge
 dependencies:
@@ -13,7 +13,6 @@ dependencies:
     - xarray
     - sphinx
     - furo
-    - sphinx_copybutton
     - sphinxcontrib-bibtex
     - breathe
     - numpy
@@ -22,8 +21,6 @@ dependencies:
     - netcdf4
     - xarray
     - awkward
-    - random
-    - struct
     - zarr
     - doxygen>=1.10.0
     - pip

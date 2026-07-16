@@ -2,7 +2,7 @@
 
 example=$1
 sbatch=$2
-path2CLEO=${3:-${HOME}/CLEO}
+path2CLEO=${3:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO}
 examplesdir=${path2CLEO}/examples
 
 if [ "${example}" == "" ]

@@ -9,7 +9,7 @@
 #SBATCH --time=00:30:00
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=bm1183
+#SBATCH --account=mh1126
 #SBATCH --output=./compile_run_cleo_out.%j.out
 #SBATCH --error=./compile_run_cleo_err.%j.out
 
@@ -24,7 +24,7 @@ spack unload --all
 ### ---------------------------------------------------- ###
 buildtype=$1                                                    # "serial", "threads", "openmp" or "cuda"
 compilername=${2:-intel}                                        # "intel" or "gcc"
-path2CLEO=${3:-${HOME}/CLEO}                                    # must be absolute path
+path2CLEO=${3:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO} # must be absolute path
 path2build=${4:-${path2CLEO}/build}                             # should be absolute path
 enableyac=${5:-false}                                           # == "true" or otherwise false
 executables=${6:-"cleocoupledsdm"}                              # executable(s) to compile or "NONE"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path2CLEO=${1:-${HOME}/CLEO}
+path2CLEO=${1:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO}
 
 if [ -z "${path2CLEO}" ];
 then

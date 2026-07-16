@@ -5,7 +5,7 @@ This script is used to run the EUREC4A1D executable. It is called by the
 1. path2CLEO: Path to the CLEO repository
 2. path2build: Path to the build directory
 3. raw_dir_individual: Path to the directory which contains the config files and raw data directory.
-   Needs to contain 'config/eurec4a_config.yaml'. Output will be stored in /eurec4a1d_sol.zarr.
+   Needs to contain 'config/eurec4a1d_config.yaml'. Output will be stored in /eurec4a1d_sol.zarr.
    raw_dir_individual
     ├── config
     │   └── eurec4a1d_config.yaml   <- NEEDS TO EXIST
@@ -37,7 +37,7 @@ except Exception:
     rank = 0
     npro = 1
 
-path2CLEO = Path(__file__).resolve().parents[3]
+path2CLEO = Path("home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
 
 path2build = path2CLEO / "build_eurec4a1d"
 path2eurec4a1d = path2CLEO / "examples/eurec4a1d"
@@ -46,7 +46,9 @@ path2eurec4a1d = path2CLEO / "examples/eurec4a1d"
 
 time_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d-%H%M%S")
 
-log_file_dir = path2eurec4a1d / "logfiles" / f"update_config_files/{time_str}"
+log_file_dir = (
+    path2eurec4a1d / "logfiles" / "update_config" / f"update_config_files/{time_str}"
+)
 log_file_dir.mkdir(exist_ok=True, parents=True)
 log_file_path = log_file_dir / f"{rank}.log"
 

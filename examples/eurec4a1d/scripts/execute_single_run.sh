@@ -5,11 +5,11 @@
 #SBATCH --ntasks-per-node=128
 #SBATCH --mem=5G
 #SBATCH --time=00:15:00
-#SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
+#SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
-#SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO_single/%j_out.log
-#SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO_single/%j_err.log
+#SBATCH --account=mh1126
+#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/%j_out.log
+#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_single/%j_err.log
 
 ### ---------------------------------------------------- ###
 ### ------------------ Input Parameters ---------------- ###
@@ -27,13 +27,13 @@ echo "============================================"
 
 ### ------------------ Load Modules -------------------- ###
 source ${HOME}/.bashrc
-env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
-conda activate ${env}
+env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+micromamba activate ${env}
 spack load cmake@3.23.1%gcc
 ### ---------------------------------------------------- ###
 
 microphysics="null_microphysics"
-path2CLEO=${HOME}/CLEO
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
 path2data=${path2CLEO}/data/output_v4.1/
 path2build=${path2CLEO}/build_eurec4a1d_openmp/
 
@@ -47,7 +47,7 @@ echo "init path2data: ${path2data}"          # path to the data directory with s
 echo "init path2build: ${path2build}"        # path to the build directory
 
 # some example paths which could be used for testing
-# path2CLEO=${HOME}/CLEO/
+# path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 # path2build=${path2CLEO}/build_eurec4a1d/
 # path2data=${path2CLEO}/data/test/
 

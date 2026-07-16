@@ -15,6 +15,7 @@ import argparse
 from mpi4py import MPI
 import matplotlib.pyplot as plt
 
+sys.path.append("/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO")
 from pySD import editconfigfile
 from pySD.gbxboundariesbinary_src import create_gbxboundaries as cgrid
 from pySD.gbxboundariesbinary_src import read_gbxboundaries as rgrid
@@ -43,8 +44,7 @@ except Exception:
     rank = 0
     number_ranks = 1
 
-path2CLEO = Path(__file__).resolve().parents[3]
-# path2build = path2CLEO / "build_eurec4a1d"
+path2CLEO = Path("home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
 path2eurec4a1d = path2CLEO / "examples/eurec4a1d"
 
 
@@ -149,7 +149,7 @@ subfolder_prefix = "cluster_"
 
 # from sdm_eurec4a import RepositoryPath
 # path2sdm_eurec4a = RepositoryPath('levante').data_dir
-# input_dir_path = path2sdm_eurec4a / "model/input_v4.0"
+# input_dir_path = path2sdm_eurec4a / "model/input_v4.2"
 
 
 class Capturing(list):
@@ -451,7 +451,7 @@ for step, cloud_id in enumerate(sublist_cloud_ids):
     with Capturing() as thermo_info:
         cthermo.write_thermodynamics_binary(
             thermofiles=thermodynamics_file_path,
-            thermogen=thermodynamics_generator,
+            thermodyngen=thermodynamics_generator,
             config_filename=config_file_path,
             constants_filename=constants_file_path,
             grid_filename=grid_file_path,

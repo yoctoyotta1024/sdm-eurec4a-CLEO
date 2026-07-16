@@ -5,11 +5,11 @@
 #SBATCH --ntasks-per-node=128
 #SBATCH --exclusive
 #SBATCH --time=01:00:00
-#SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
+#SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
-#SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/eurec4a1d_update_config.%j_out.out
-#SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/eurec4a1d_update_config.%j_err.out
+#SBATCH --account=mh1126
+#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/update_config/eurec4a1d_update_config.%j_out.out
+#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/update_config/eurec4a1d_update_config.%j_err.out
 
 ### ---------------------------------------------------- ###
 ### ------------------ Input Parameters ---------------- ###
@@ -27,7 +27,7 @@ echo "git branch: $(git symbolic-ref --short HEAD)"
 echo "============================================"
 
 # set paths
-path2CLEO=${HOME}/CLEO/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 path2data=${path2CLEO}data/debug_output/
 path2eurec4a1d=${path2CLEO}examples/eurec4a1d/
 subdir_pattern=cluster_
@@ -52,9 +52,9 @@ rawdirectory=${path2data}/
 
 
 ### ------------------ Load Modules -------------------- ###
-cleoenv=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
-python=${cleoenv}/bin/python3
-source activate ${cleoenv}
+sdm_eurec4a_cleo_env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+python=${sdm_eurec4a_cleo_env}/bin/python3
+micromamba activate ${sdm_eurec4a_cleo_env}
 ### ---------------------------------------------------- ###
 
 ### -------------------- print inputs ------------------ ###

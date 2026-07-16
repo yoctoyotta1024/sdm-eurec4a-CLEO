@@ -5,11 +5,11 @@
 #SBATCH --ntasks-per-node=128
 #SBATCH --mem=5G
 #SBATCH --time=00:15:00
-#SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
+#SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
-#SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO/%A/%A_%a_out.out
-#SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO/%A/%A_%a_err.out
+#SBATCH --account=mh1126
+#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO/%A/%A_%a_out.out
+#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO/%A/%A_%a_err.out
 #SBATCH --array=0-127
 
 ### ---------------------------------------------------- ###
@@ -30,10 +30,9 @@ set -e
 module purge
 spack unload --all
 
-
-
-# env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
-# conda activate ${env}
+# source ${HOME}/.bashrc
+# env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+# micromamba activate ${env}
 ### ---------------------------------------------------- ###
 
 # the following paths will be given by the master submit scrip, which sets the slurm array size in this script too.

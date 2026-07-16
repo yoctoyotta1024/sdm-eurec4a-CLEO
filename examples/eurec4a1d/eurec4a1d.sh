@@ -9,7 +9,7 @@
 #SBATCH --time=00:10:00
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=bm1183
+#SBATCH --account=mh1126
 #SBATCH --output=./eurec4a1d_out.%j.out
 #SBATCH --error=./eurec4a1d_err.%j.out
 
@@ -21,8 +21,8 @@
 ### -------- to compile, and your python script -------- ###
 ### ---------------------------------------------------- ###
 buildtype="cuda"
-path2CLEO=${HOME}/CLEO/
-path2build=${HOME}/CLEO/build_eurec4a1d/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
+path2build=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build_eurec4a1d/
 build_flags="-DCLEO_COUPLED_DYNAMICS=fromfile -DCLEO_DOMAIN=cartesian -DCLEO_NO_ROUGHPAPER=true"
 enableyac=false
 executables="eurec4a1d"

@@ -6,11 +6,11 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=10G
 #SBATCH --time=00:15:00
-#SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
+#SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
-#SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO/%A/%A_%a_out.out
-#SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/run_CLEO/%A/%A_%a_err.out
+#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_debugsingle/%A/%A_%a_out.out
+#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/run_CLEO_debugsingle/%A/%A_%a_err.out
 #SBATCH --array=0-127
 
 ### ---------------------------------------------------- ###
@@ -27,7 +27,7 @@ echo "date: $(date)"
 echo "============================================"
 
 
-path2CLEO=${HOME}/CLEO/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 path2build=${path2CLEO}/build_eurec4a1d/
 path2eurec4a1d=${path2CLEO}/examples/eurec4a1d/
 microphysics=condensation
@@ -86,11 +86,10 @@ dataset_path="${path2inddir}/${dataset_name}"
 
 
 ### ------------------ Load Modules -------------------- ###
-env=/work/mh1126/m301096/conda/envs/sdm_pysd_env312
-mamba activate ${env}
+env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
+micromamba activate ${env}
 spack load cmake@3.23.1%gcc
 # module load python3/2022.01-gcc-11.2.0
-source activate ${cleoenv}
 ### ---------------------------------------------------- ###
 
 ### -------------------- print inputs ------------------ ###

@@ -4,11 +4,11 @@
 #SBATCH --nodes=1
 #SBATCH --mem=40G
 #SBATCH --time=00:10:00
-#SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
+#SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
-#SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/create_init_files/mpi4py/.%j_out.out
-#SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/create_init_files/mpi4py/.%j_err.out
+#SBATCH --account=mh1126
+#SBATCH --output=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/.%j_out.out
+#SBATCH --error=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/logfiles/create_init_files/mpi4py/.%j_err.out
 
 ### --------------------- Version --------------------- ###
 echo "git hash: $(git rev-parse HEAD)"
@@ -20,12 +20,12 @@ echo "============================================"
 source ${HOME}/.bashrc
 
 ### ------------------ Load Modules -------------------- ###
-env=/work/um1487/m301096/conda/envs/sdm_pysd_python312/
+env=/home/m/m300950/mamba/envs/sdm_eurec4a_cleo_env
 # module purge
-conda activate ${env}
+micromamba activate ${env}
 
-pythonpath=${env}/bin/python
-echo "Using Python from: $(which python)"
+python=${env}/bin/python
+echo "Using Python: ${python}"
 ### ---------------------------------------------------- ###
 
 ### ------------------ Input Parameters ---------------- ###
@@ -36,12 +36,12 @@ microphysics="collision_condensation"
 # microphysics="coalbure_condensation_large"
 # microphysics="coalbure_condensation_cke"
 
-path2CLEO=${HOME}/CLEO/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 
 
 
 path2eurec4a1d=${path2CLEO}examples/eurec4a1d/
-path2sdmeurec4a=${HOME}/repositories/sdm-eurec4a/
+path2sdmeurec4a=/home/m/m300950/rain-evap-nils/sdm-eurec4a/
 
 path2data=${path2CLEO}data/output_v4.2/
 path2input=${path2sdmeurec4a}data/model/input_v4.2/
@@ -90,5 +90,5 @@ echo "breakup file path: ${breakup_file_path}"
 echo "============================================"
 
 ### ---- Creation of init files
-
-mpirun -np 40 python ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}
+echo "srun ${python} ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}"
+srun ${python} ${path2pythonscript} --input_dir_path ${path2input} --output_dir_path ${path2output} --breakup_config_file_path ${breakup_file_path} --default_config_file_path ${default_config_path}
