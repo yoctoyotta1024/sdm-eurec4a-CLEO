@@ -36,7 +36,14 @@ except Exception:
     rank = 0
     npro = 1
 
-path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "data"
+path2data = (
+    Path("/work")
+    / "mh1126"
+    / "m300950"
+    / "rain-evap-nils"
+    / "sdm-eurec4a-CLEO"
+    / "data"
+)
 path2logfiles = path2data / "logfiles"
 
 # === logging ===
