@@ -44,8 +44,7 @@ except Exception:
     rank = 0
     number_ranks = 1
 
-path2CLEO = Path(__file__).resolve().parents[3]
-# path2build = path2CLEO / "build_eurec4a1d"
+path2CLEO = Path("home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
 path2eurec4a1d = path2CLEO / "examples/eurec4a1d"
 
 
