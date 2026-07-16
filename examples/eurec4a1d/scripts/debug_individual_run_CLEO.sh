@@ -28,7 +28,6 @@ echo "============================================"
 
 
 microphysics=condensation
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/
 path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
 path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/debug_output/
 
@@ -94,7 +93,6 @@ spack load cmake@3.23.1%gcc
 ### -------------------- print inputs ------------------ ###
 echo "============================================"
 echo -e "buildtype: \t${buildtype}"
-echo -e "path2CLEO: \t${path2CLEO}"
 echo -e "path2build: \t${path2build}"
 echo -e "enableyac: \t${enableyac}"
 echo "--------------------------------------------"
@@ -110,10 +108,7 @@ echo "============================================"
 
 
 # make sure paths are directories and executable is a file
-if [ ! -d "$path2CLEO" ]; then
-    echo "Invalid path to CLEO"
-    exit 1
-elif [ ! -d "$path2build" ]; then
+if [ ! -d "$path2build" ]; then
     echo "Invalid path to build"
     exit 1
 elif [ ! -d "$path2inddir" ]; then

@@ -28,17 +28,17 @@ compile=true
 run=false
 
 # directory parameters
-path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
+path2sdmeurec4aCLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
 path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
 path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.2/
 
 # activate scripts
 source ${HOME}/.bashrc
-source ${path2CLEO}/scripts/levante/bash/src/check_inputs.sh
+source ${path2sdmeurec4aCLEO}/scripts/levante/bash/src/check_inputs.sh
 
 
 ### -------------- run and compile CLEO parameters ------------- ###
-run_script_path=${path2CLEO}/examples/eurec4a1d/scripts/run_job_array_eurec4a1d.sh
+run_script_path=${path2sdmeurec4aCLEO}/examples/eurec4a1d/scripts/run_job_array_eurec4a1d.sh
 subdir_pattern="cluster*"
 
 # microphysics="null_microphysics"
@@ -84,7 +84,7 @@ make_clean=true
 
 export CLEO_BUILDTYPE=${buildtype}
 export CLEO_COMPILERNAME=${compilername}
-export CLEO_PATH2CLEO=${path2CLEO}
+export CLEO_PATH2CLEO=${path2sdmeurec4aCLEO}
 export CLEO_PATH2BUILD=${path2build}
 export CLEO_ENABLEDEBUG=${enabledebug}
 export CLEO_ENABLEYAC=${enableyac}
