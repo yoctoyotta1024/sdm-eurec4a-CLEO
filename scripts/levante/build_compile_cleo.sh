@@ -24,7 +24,7 @@ spack unload --all
 ### ---------------------------------------------------- ###
 buildtype=$1                                   # "serial", "threads", "openmp" or "cuda"
 compilername=${2:-intel}                       # "intel" or "gcc"
-path2CLEO=${3:-${HOME}/CLEO}                   # must be absolute path
+path2CLEO=${3:-/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO} # must be absolute path
 path2build=${4:-${path2CLEO}/build}            # should be absolute path
 build_flags=${5:-"-DCLEO_COUPLED_DYNAMICS="""} # CLEO_BUILD_FLAGS
 executables=${6:-"cleocoupledsdm"}             # list of executables to compile or "NONE"
