@@ -5,9 +5,9 @@
 #SBATCH --ntasks-per-node=128
 #SBATCH --mem=5G
 #SBATCH --time=00:15:00
-#SBATCH --mail-user=nils-ole.niebaumy@mpimet.mpg.de
+#SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
-#SBATCH --account=um1487
+#SBATCH --account=mh1126
 #SBATCH --output=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/full_workflow/%j/%j_out.out
 #SBATCH --error=/home/m/m301096/CLEO/examples/eurec4a1d/logfiles/full_workflow/%j/%j_err.out
 
@@ -24,8 +24,8 @@ spack unload --all
 
 # setps to run
 build=false
-compile=false
-run=true
+compile=true
+run=false
 
 # directory parameters
 path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
@@ -36,14 +36,15 @@ source ${HOME}/.bashrc
 source ${path2CLEO}/scripts/levante/bash/src/check_inputs.sh
 
 
-### -------------- run CLEO parameters ------------- ###
+### -------------- run and compile CLEO parameters ------------- ###
+
 run_script_path=${path2CLEO}/examples/eurec4a1d/scripts/run_job_array_eurec4a1d.sh
 path2data=${path2CLEO}/data/output_v4.2/
 subdir_pattern="cluster*"
 
 # microphysics="null_microphysics"
-microphysics="condensation"
-# microphysics="collision_condensation"
+# microphysics="condensation"
+microphysics="collision_condensation"
 # microphysics="coalbure_condensation_small"
 # microphysics="coalbure_condensation_large"
 # microphysics="coalbure_condensation_cke"
@@ -51,6 +52,9 @@ microphysics="condensation"
 executable_name="eurec4a1d_${microphysics}"
 run_excutable="${path2build}/examples/eurec4a1d/stationary_${microphysics}/src/${executable_name}"
 
+compile_executables="eurec4a1d_null_microphysics eurec4a1d_condensation eurec4a1d_collision_condensation eurec4a1d_coalbure_condensation_small eurec4a1d_coalbure_condensation_large eurec4a1d_coalbure_condensation_cke"
+
+### -------------- eurec4a-sdm-CLEO exports and print statements ------------- ###
 
 export EUREC4A1D_MICROPHYSICS=${microphysics}
 export EUREC4A1D_PATH2DATA=${path2data}
@@ -77,14 +81,8 @@ ntasks_per_node=128 # number of tasks per node (cpus which shall be used)
 build_clean=true
 make_clean=true
 
-### ----------------- define executables --------------- ###
-compile_executables="eurec4a1d_null_microphysics eurec4a1d_condensation eurec4a1d_collision_condensation eurec4a1d_coalbure_condensation_small eurec4a1d_coalbure_condensation_large eurec4a1d_coalbure_condensation_cke"
-
-
-### ---------------------------------------------------- ###
-
-
 ### ----------------- export inputs -------------------- ###
+
 export CLEO_BUILDTYPE=${buildtype}
 export CLEO_COMPILERNAME=${compilername}
 export CLEO_PATH2CLEO=${path2CLEO}
