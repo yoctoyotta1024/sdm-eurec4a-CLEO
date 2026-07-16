@@ -28,8 +28,8 @@ compile=false
 run=true
 
 # directory parameters
-path2CLEO=${HOME}/CLEO/
-path2build=${HOME}/CLEO/build_v0.38.3/
+path2CLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
+path2build=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
 
 # activate scripts
 source ${HOME}/.bashrc
