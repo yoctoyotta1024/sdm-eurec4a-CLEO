@@ -23,7 +23,7 @@ module purge
 spack unload --all
 
 # setps to run
-build=false
+build=true
 compile=true
 run=false
 
