@@ -44,8 +44,8 @@ except Exception:
     rank = 0
     number_ranks = 1
 
-path2CLEO = Path("home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
-path2data = Path("work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "data"
+path2CLEO = Path("/home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
+path2data = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "data"
 
 # logging configure
 logging.basicConfig(level=logging.INFO)
