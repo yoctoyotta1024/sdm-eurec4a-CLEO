@@ -16,10 +16,6 @@
 # -----
 # File Description:
 # Configuration file for CLEO eurec4a 1-D rainshaft example.
-# Note: The inital superdroplets data read from file "initsupers_filename" can be made with
-# CLEO's pySD module (see Python script "create_initsuperdropsbinary_script.py" for usage).
-# Likewise the "grid_filename" can be made using pySD (see "create_gbxboundariesbinary_script.py"),
-# and so can the thermodynamics files when using coupled thermodynamics "fromfile".
 #
 
 ### Initialisation Parameters ###
