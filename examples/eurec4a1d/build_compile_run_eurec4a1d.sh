@@ -30,7 +30,7 @@ run=false
 # directory parameters
 path2sdmeurec4aCLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
 path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
-path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.2/
+path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.2/  # note version here must match the version in create_model_input_files.sh
 
 # activate scripts
 source ${HOME}/.bashrc
