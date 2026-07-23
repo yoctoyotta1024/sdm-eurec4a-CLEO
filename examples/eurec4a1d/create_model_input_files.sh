@@ -3,7 +3,7 @@
 #SBATCH --partition=compute
 #SBATCH --nodes=1
 #SBATCH --mem=40G
-#SBATCH --time=00:10:00
+#SBATCH --time=00:15:00
 #SBATCH --mail-user=clara.bayley@mpimet.mpg.de
 #SBATCH --mail-type=FAIL
 #SBATCH --account=mh1126
