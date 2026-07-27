@@ -49,7 +49,7 @@ echo "CLEO_RUN_EXECUTABLE: ${CLEO_RUN_EXECUTABLE}"
 echo "----------------------------------------------------"
 
 ### ------------------ Load Modules -------------------- ###
-cleo_bashsrc=${CLEO_PATH2CLEO}/scripts/levante/bash/src
+cleo_bashsrc=${CLEO_PATH2CLEO}/examples/eurec4a1d/scripts/levante/bash/src
 local_bashsrc="${HOME}/.bashrc"
 source ${local_bashsrc}
 source ${cleo_bashsrc}/check_inputs.sh

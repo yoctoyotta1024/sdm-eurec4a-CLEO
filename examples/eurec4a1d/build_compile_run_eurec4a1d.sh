@@ -35,7 +35,7 @@ yacyaxtroot=/work/mh1126/m300950/yacyaxt/intel
 
 # activate scripts
 source ${HOME}/.bashrc
-source ${path2sdmeurec4aCLEO}/scripts/levante/bash/src/check_inputs.sh
+source ${path2sdmeurec4aCLEO}/examples/eurec4a1d/scripts/levante/bash/src/check_inputs.sh
 
 
 ### -------------- run and compile CLEO parameters ------------- ###
@@ -133,7 +133,7 @@ if [ "$build" == true ]; then
     fi
   fi
   echo "Build CLEO"
-  buildcmd="${CLEO_PATH2CLEO}/scripts/levante/bash/build_cleo.sh"
+  buildcmd="${path2sdmeurec4aCLEO}/examples/eurec4a1d/scripts/levante/bash/build_cleo.sh"
   echo ${buildcmd}
   eval ${buildcmd}
 fi
@@ -142,7 +142,7 @@ fi
 ### ---------------- compile executables --------------- ###
 if [ "$compile" == true ]; then
   echo "Compile CLEO"
-  compilecmd="${CLEO_PATH2CLEO}/scripts/levante/bash/compile_cleo.sh \"${compile_executables}\" ${make_clean}"
+  compilecmd="${path2sdmeurec4aCLEO}/examples/eurec4a1d/scripts/levante/bash/compile_cleo.sh \"${compile_executables}\" ${make_clean}"
   echo ${compilecmd}
   eval ${compilecmd}
 fi
