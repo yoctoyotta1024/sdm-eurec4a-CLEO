@@ -31,6 +31,7 @@ run=false
 path2sdmeurec4aCLEO=/home/m/m300950/rain-evap-nils/sdm-eurec4a-CLEO
 path2build=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/build/
 path2data=/work/mh1126/m300950/rain-evap-nils/sdm-eurec4a-CLEO/data/output_v4.2/  # note version here must match the version in create_model_input_files.sh
+yacyaxtroot=/work/mh1126/m300950/yacyaxt/intel
 
 # activate scripts
 source ${HOME}/.bashrc
@@ -67,13 +68,12 @@ echo "EUREC4A1D_PATH2DATA = ${EUREC4A1D_PATH2DATA}"
 echo "EUREC4A1D_SUBDIR_PATTERN = ${EUREC4A1D_SUBDIR_PATTERN}"
 echo "### ------------------------------------------- ###"
 
-### -------------- build and compile parameters ------------- ###
-
+### -------------- CLEO build and compile parameters ------------- ###
 buildtype="openmp" # as defined by Kokkos configuration; see below
 compilername="intel" # as defined by Kokkos configuration; see below
 enabledebug=false # as defined by Kokkos configuration; see below
-enableyac=false # as defined by YAC flags; see below
-yacyaxtroot=/work/bm1183/m300950/yacyaxt
+build_flags="-DCLEO_COUPLED_DYNAMICS=fromfile -DCLEO_DOMAIN=cartesian \
+  -DCLEO_NO_ROUGHPAPER=true -DCLEO_NO_PYBINDINGS=true"
 stacksize_limit=204800 # ulimit -s [stacksize_limit] (kB)
 ntasks_per_node=128 # number of tasks per node (cpus which shall be used)
 
@@ -86,21 +86,16 @@ export CLEO_BUILDTYPE=${buildtype}
 export CLEO_COMPILERNAME=${compilername}
 export CLEO_PATH2CLEO=${path2sdmeurec4aCLEO}
 export CLEO_PATH2BUILD=${path2build}
+export CLEO_BUILD_FLAGS=${build_flags}
+export CLEO_YACYAXTROOT=${yacyaxtroot}
 export CLEO_ENABLEDEBUG=${enabledebug}
-export CLEO_ENABLEYAC=${enableyac}
-export CLEO_ENABLEYAC=${enableyac}
+
 export CLEO_STACKSIZE_LIMIT=${stacksize_limit}
 export CLEO_NTASKS_PER_NODE=${ntasks_per_node}
 export CLEO_RUN_EXECUTABLE=${run_excutable}
 
-if [ ${CLEO_ENABLEYAC} == "true" ]
-then
-  export CLEO_YACYAXTROOT=${yacyaxtroot}
-fi
-
-
 ### -------------------- check inputs ------------------- ###
-check_args_not_empty "${CLEO_BUILDTYPE}" "${CLEO_COMPILERNAME}" "${CLEO_ENABLEDEBUG}" "${CLEO_PATH2CLEO}" "${CLEO_PATH2BUILD}" "${CLEO_ENABLEYAC}" "${CLEO_STACKSIZE_LIMIT}" "${CLEO_NTASKS_PER_NODE}" "${compile_executables}" "${CLEO_RUN_EXECUTABLE}"
+check_args_not_empty "${CLEO_BUILDTYPE}" "${CLEO_COMPILERNAME}" "${CLEO_ENABLEDEBUG}" "${CLEO_PATH2CLEO}" "${CLEO_PATH2BUILD}" "${CLEO_BUILD_FLAGS}" "${CLEO_STACKSIZE_LIMIT}" "${CLEO_NTASKS_PER_NODE}" "${compile_executables}" "${CLEO_RUN_EXECUTABLE}"
 check_source_and_build_paths
 check_buildtype
 check_compilername
@@ -115,8 +110,8 @@ echo "CLEO_BUILDTYPE = ${CLEO_BUILDTYPE}"
 echo "CLEO_COMPILERNAME = ${CLEO_COMPILERNAME}"
 echo "CLEO_PATH2CLEO = ${CLEO_PATH2CLEO}"
 echo "CLEO_PATH2BUILD = ${CLEO_PATH2BUILD}"
+echo "CLEO_BUILD_FLAGS = ${CLEO_BUILD_FLAGS}"
 echo "CLEO_ENABLEDEBUG = ${CLEO_ENABLEDEBUG}"
-echo "CLEO_ENABLEYAC = ${CLEO_ENABLEYAC}"
 echo "CLEO_YACYAXTROOT = ${CLEO_YACYAXTROOT}"
 echo "CLEO_STACKSIZE_LIMIT = ${CLEO_STACKSIZE_LIMIT}"
 echo "CLEO_NTASKS_PER_NODE = ${CLEO_NTASKS_PER_NODE}"
