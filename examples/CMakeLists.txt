@@ -4,4 +4,4 @@ if(NOT DEFINED CMAKE_MINIMUM_REQUIRED_VERSION)
 endif()
 
 # subdirectories for specific examples of CLEO
-add_subdirectory(eurec4a1d EXCLUDE_FROM_ALL)
+add_subdirectory(eurec4a1d)
