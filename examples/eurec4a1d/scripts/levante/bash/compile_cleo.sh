@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=128
 #SBATCH --mem=940M
 #SBATCH --time=00:05:00
-#SBATCH --account=mh1126
+#SBATCH --account=mh0731
 #SBATCH --output=./build/bin/compile_cleo_out.%j.out
 #SBATCH --error=./build/bin/compile_cleo_err.%j.out
 
@@ -39,13 +39,11 @@ source ${bashsrc}/levante_packages.sh
 
 if [ "${CLEO_COMPILERNAME}" == "intel" ]
 then
-  module load ${levante_intel}
-  spack load ${levante_intel_openmpi}
+  module load ${levante_intel} ${levante_intel_openmpi}
   spack load ${levante_intel_cmake}
 elif [ "${CLEO_COMPILERNAME}" == "gcc" ]
 then
-  module load ${levante_gcc}
-  spack load ${levante_gcc_openmpi}
+  module load ${levante_gcc} ${levante_gcc_openmpi}
   spack load ${levante_gcc_cmake}
   if [ "${CLEO_BUILDTYPE}" == "cuda" ]
   then
