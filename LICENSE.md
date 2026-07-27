@@ -1,24 +1,6 @@
-/*
- * ----- CLEO -----
- * File: LICENSE.md
- * Project: CLEOfire
- * Created Date: Thursday 12th October 2023
- * Author: Clara Bayley (CB)
- * Additional Contributors:
- * -----
- * Last Modified: Thursday 12th October 2023
- * Modified By: CB
- * -----
- * License: BSD 3-Clause "New" or "Revised" License
- * https://opensource.org/licenses/BSD-3-Clause
- * -----
- * Copyright (c) 2023 MPI-M, Clara Bayley
- */
-
-
 BSD 3-Clause License
 
-Copyright (c) 2023, Clara Bayley
+Copyright (c) 2026, Clara Bayley
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
