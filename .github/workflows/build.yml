@@ -27,14 +27,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yac-
 
-      - name: Setup
+      - name: Install Software Dependencies
         if: steps.cache_yaxt.outputs.cache-hit != 'true' || steps.cache_yac.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-          cmake libnetcdff-dev liblapack-dev python3-dev \
-          python3-numpy python3-mpi4py python3-pip curl \
-          libfyaml-dev libopenmpi-dev openmpi-bin
+          cmake libopenmpi-dev openmpi-bin \
+          libnetcdff-dev liblapack-dev libfyaml-dev \
+          python3-dev python3-numpy python3-mpi4py python3-pip curl
+          apt list --installed
 
       - name: Build YAXT
         if: steps.cache_yaxt.outputs.cache-hit != 'true'
@@ -56,7 +57,7 @@ jobs:
           make -j 4
           make install
 
-  build_basic_examples:
+  build_examples:
     runs-on: ubuntu-latest
     needs: setup
     strategy:
@@ -67,11 +68,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Install Software Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-          cmake libopenmpi-dev openmpi-bin
+          cmake libopenmpi-dev openmpi-bin \
+          libnetcdff-dev liblapack-dev libfyaml-dev \
+          python3-dev python3-numpy python3-mpi4py python3-pip curl
+          apt list --installed
+
+      - name: Restore YAXT Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/yaxt/
+          key: ${{ runner.os }}-yaxt-cache-v0.12.1
+
+      - name: Restore YAC Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/yac/
+          key: ${{ runner.os }}-yac-cache-v3.19.0
 
       - name: Build Example
         run: |
@@ -83,11 +99,11 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DKokkos_ENABLE_SERIAL=ON \
           -DCLEO_COUPLED_DYNAMICS=fromfile \
-          -DCLEO_DOMAIN=cartesian
+          -DCLEO_DOMAIN=cartesian \
           -DCLEO_FYAMLLIB=/usr/lib/x86_64-linux-gnu \
           -DCLEO_YAXT_ROOT=${{ runner.temp }}/yaxt \
           -DCLEO_YAC_ROOT=${{ runner.temp }}/yac \
-          -DCMAKE_MODULE_PATH=${PWD}/libs/coupldyn_yac/cmake
+          -DCMAKE_MODULE_PATH=${PWD}/build/_deps/cleo-src/libs/coupldyn_yac/cmake
 
       - name: Compile Example
         run: cd build && make ${{ matrix.target }}
