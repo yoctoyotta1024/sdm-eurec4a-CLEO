@@ -146,7 +146,7 @@ inline MicrophysicalProcess auto create_microphysics(const Config &config,
   const auto c_breakup = config.get_breakup();
   const PairProbability auto collprob = LongHydroProb();
   const NFragments auto nfrags = ConstNFrags(c_breakup.constnfrags.nfrags);
-  const CoalBuReFlag auto coalbure_flag = TSCoalBuReFlag{};
+  const CoalBuReFlag auto coalbure_flag = TSCoalBuReFlag(RogersGKTerminalVelocity{});
   const MicrophysicalProcess auto coalbure =
       CoalBuRe(tsteps.get_collstep(), &step2realtime, collprob, nfrags, coalbure_flag);
   return cond >> coalbure;

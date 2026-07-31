@@ -143,8 +143,8 @@ inline MicrophysicalProcess auto create_microphysics(const Config &config,
       Condensation(tsteps.get_condstep(), &step2dimlesstime, c.do_alter_thermo, c.maxniters, c.rtol,
                    c.atol, c.MINSUBTSTEP, &realtime2dimless);
   const PairProbability auto collprob = LongHydroProb();
-  const NFragments auto nfrags = CollisionKineticEnergyNFrags{};
-  const CoalBuReFlag auto coalbure_flag = TSCoalBuReFlag{};
+  const NFragments auto nfrags = CollisionKineticEnergyNFrags(RogersGKTerminalVelocity{});
+  const CoalBuReFlag auto coalbure_flag = TSCoalBuReFlag(RogersGKTerminalVelocity{});
   const MicrophysicalProcess auto coalbure =
       CoalBuRe(tsteps.get_collstep(), &step2realtime, collprob, nfrags, coalbure_flag);
   return cond >> coalbure;
