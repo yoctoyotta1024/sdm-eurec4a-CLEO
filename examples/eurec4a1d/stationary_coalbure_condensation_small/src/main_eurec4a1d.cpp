@@ -199,13 +199,15 @@ inline Observer auto create_observer(const Config& config, const Timesteps& tste
 
   const Observer auto obsmm = MassMomentsObserver(obsstep, dataset, store, maxchunk, ngbxs);
 
-  const Observer auto obsmmrain = MassMomentsRaindropsObserver(obsstep, dataset, store, maxchunk, ngbxs);
+  const Observer auto obsmmrain = MassMomentsRaindropsObserver(obsstep, dataset,
+    store, maxchunk, ngbxs);
 
   const Observer auto obsgbx = create_gridboxes_observer(obsstep, dataset, maxchunk, ngbxs);
 
   const Observer auto obssd = create_superdrops_observer(obsstep, dataset, store, maxchunk);
 
-  const Observer auto obscond = MonitorCondensationObserver(obsstep, dataset, store, maxchunk, ngbxs);
+  const Observer auto obscond = MonitorCondensationObserver(obsstep, dataset,
+    store, maxchunk, ngbxs);
 
   return obscond
         >> obsstreamout
