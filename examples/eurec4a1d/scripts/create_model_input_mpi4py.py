@@ -44,7 +44,17 @@ except Exception:
     rank = 0
     number_ranks = 1
 
-path2CLEOlibs = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "build" / "_deps" / "cleo-src" / "libs"
+path2CLEOlibs = (
+    Path("/work")
+    / "mh1126"
+    / "m300950"
+    / "rain-evap-nils"
+    / "sdm-eurec4a-CLEO"
+    / "build"
+    / "_deps"
+    / "cleo-src"
+    / "libs"
+)
 path2logfiles = (
     Path("/work")
     / "mh1126"
