@@ -44,7 +44,7 @@ except Exception:
     rank = 0
     number_ranks = 1
 
-path2CLEO = Path("/home") / "m" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO"
+path2CLEOlibs = Path("/work") / "mh1126" / "m300950" / "rain-evap-nils" / "sdm-eurec4a-CLEO" / "build" / "_deps" / "cleo-src" / "libs"
 path2logfiles = (
     Path("/work")
     / "mh1126"
@@ -125,7 +125,7 @@ args = parser.parse_args()
 
 
 # building paths to default configuration files and the CLEO constants file
-constants_file_path = path2CLEO / "libs/cleoconstants.hpp"
+constants_file_path = path2CLEOlibs / "cleoconstants.hpp"
 logging.info(f"Constants file path: {constants_file_path}")
 
 input_dir_path = Path(args.input_dir_path)
