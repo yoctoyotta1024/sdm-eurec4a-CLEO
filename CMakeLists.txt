@@ -24,8 +24,8 @@ set(cleopath ${CMAKE_SOURCE_DIR}/extern/cleo)
 message(STATUS "Using CLEO installation from: ${cleopath}")
 add_subdirectory(${cleopath})
 
-message("CLEO_SOURCE_DIR: ${CLEO_SOURCE_DIR}")
-message("CLEO_BINARY_DIR: ${CLEO_BINARY_DIR}")
+message(STATUS "CLEO_SOURCE_DIR: ${CLEO_SOURCE_DIR}")
+message(STATUS "CLEO_BINARY_DIR: ${CLEO_BINARY_DIR}")
 
 # print default compiler flags
 message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
