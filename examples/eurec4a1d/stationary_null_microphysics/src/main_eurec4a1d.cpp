@@ -34,7 +34,7 @@
 #include "cartesiandomain/createcartesianmaps.hpp"
 #include "cartesiandomain/movement/cartesian_movement.hpp"
 #include "cartesiandomain/movement/cartesian_motion.hpp"
-#include "cartesiandomain/movement/add_supers_at_domain_top.hpp"
+#include "cartesiandomain/movement/add_supers_to_domain.hpp"
 #include "coupldyn_fromfile/fromfile_cartesian_dynamics.hpp"
 #include "coupldyn_fromfile/fromfilecomms.hpp"
 #include "gridboxes/boundary_conditions.hpp"
@@ -119,7 +119,7 @@ inline auto create_movement(const Config &config,
 
   // const BoundaryConditions<CartesianMaps> auto boundary_conditions = NullBoundaryConditions{};
   const BoundaryConditions<CartesianMaps> auto boundary_conditions =
-      AddSupersAtDomainTop(config.get_addsupersatdomaintop());
+      AddSupersToDomain(config.get_addsuperstodomain());
 
   return cartesian_movement(gbxmaps, motion, boundary_conditions);
 }
