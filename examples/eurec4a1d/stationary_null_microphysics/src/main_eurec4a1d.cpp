@@ -16,9 +16,7 @@
  * https://opensource.org/licenses/BSD-3-Clause
  * -----
  * File Description:
- * runs the CLEO super-droplet model (SDM) for eurec4a 1-D rainshaft example.
- * After make/compiling, execute for example via:
- * ./src/eurec4a1d ../src/config/config.yaml
+ * CLEO main program for EUREC4A 1-D column setup without microphysics ("null microphysics").
  */
 
 #include <Kokkos_Core.hpp>
@@ -124,6 +122,7 @@ inline auto create_movement(const Config &config,
 
   return cartesian_movement(gbxmaps, motion, boundary_conditions);
 }
+
 // ===================================================
 // MICROPHYSICS
 // ===================================================
