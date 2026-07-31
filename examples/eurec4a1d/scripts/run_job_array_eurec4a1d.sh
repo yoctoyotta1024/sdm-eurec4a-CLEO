@@ -44,7 +44,6 @@ echo "----------------------------------------------------"
 echo "CLEO_PATH2CLEO: ${CLEO_PATH2CLEO}"
 echo "CLEO_PATH2BUILD: ${CLEO_PATH2BUILD}"
 echo "CLEO_STACKSIZE_LIMIT: ${CLEO_STACKSIZE_LIMIT}"
-echo "CLEO_ENABLEYAC: ${CLEO_ENABLEYAC}"
 echo "CLEO_RUN_EXECUTABLE: ${CLEO_RUN_EXECUTABLE}"
 echo "----------------------------------------------------"
 
@@ -56,7 +55,7 @@ source ${cleo_bashsrc}/check_inputs.sh
 
 ### -------------------- check inputs ------------------- ###
 check_args_not_empty "${EUREC4A1D_MICROPHYSICS}"  "${EUREC4A1D_PATH2DATA}" "${EUREC4A1D_SUBDIR_PATTERN}"
-check_args_not_empty "${CLEO_PATH2CLEO}" "${CLEO_PATH2BUILD}" "${CLEO_STACKSIZE_LIMIT}" "${CLEO_ENABLEYAC}" "${CLEO_RUN_EXECUTABLE}"
+check_args_not_empty "${CLEO_PATH2CLEO}" "${CLEO_PATH2BUILD}" "${CLEO_STACKSIZE_LIMIT}" "${CLEO_RUN_EXECUTABLE}"
 
 ### ---------- GET CLOUD DIR FOR THIS SLURM_ARRAY_TASK_ID ---------------- ###
 microphysics_data_dir=${EUREC4A1D_PATH2DATA}/${EUREC4A1D_MICROPHYSICS}
