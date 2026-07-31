@@ -77,8 +77,8 @@ build_flags="-DCLEO_COUPLED_DYNAMICS=fromfile -DCLEO_DOMAIN=cartesian \
 stacksize_limit=204800 # ulimit -s [stacksize_limit] (kB)
 ntasks_per_node=128 # number of tasks per node (cpus which shall be used)
 
-build_clean=true
-make_clean=true
+build_clean=false
+make_clean=false
 
 ### ----------------- export inputs -------------------- ###
 
