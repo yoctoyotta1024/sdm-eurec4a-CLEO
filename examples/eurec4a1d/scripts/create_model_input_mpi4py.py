@@ -534,7 +534,7 @@ for step, cloud_id in enumerate(sublist_cloud_ids):
     ### ---------------------------------------------------------------- ###
     logging.info("Update boundary conditions in config file")
     eurec4a1d_config["boundary_conditions"].update(
-        COORD3LIM=float(
+        UPPER_COORD3LIM=float(
             zgrid_cloud_base
         ),  # SDs added to domain with coord3 >= z_boundary_respawn [m]
         newnsupers=sd_per_gridbox,  # number of new super-droplets per gridbox
