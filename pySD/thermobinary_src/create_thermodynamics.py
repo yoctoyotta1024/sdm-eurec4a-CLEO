@@ -39,7 +39,6 @@ def thermoinputsdict(config_filename, constants_filename):
         # for creating thermodynamic profiles
         "G": consts["G"],
         "CP_DRY": consts["CP_DRY"],
-        "RHO_DRY": consts["RHO_DRY"],  # dry air density [Kg/m^3]
         "RGAS_DRY": mconsts["RGAS_DRY"],
         "RGAS_V": mconsts["RGAS_V"],
         "Mr_ratio": mconsts["Mr_ratio"],
