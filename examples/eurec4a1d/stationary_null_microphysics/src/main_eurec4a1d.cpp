@@ -29,22 +29,23 @@
 #include <stdexcept>
 #include <string_view>
 
-#include "zarr/simple_dataset.hpp"
 #include "cartesiandomain/cartesianmaps.hpp"
 #include "cartesiandomain/createcartesianmaps.hpp"
-#include "cartesiandomain/movement/cartesian_movement.hpp"
-#include "cartesiandomain/movement/cartesian_motion.hpp"
 #include "cartesiandomain/movement/add_supers_to_domain.hpp"
+#include "cartesiandomain/movement/cartesian_motion.hpp"
+#include "cartesiandomain/movement/cartesian_movement.hpp"
+#include "configuration/communicator.hpp"
+#include "configuration/config.hpp"
 #include "coupldyn_fromfile/fromfile_cartesian_dynamics.hpp"
 #include "coupldyn_fromfile/fromfilecomms.hpp"
 #include "gridboxes/boundary_conditions.hpp"
 #include "gridboxes/gridboxmaps.hpp"
-#include "initialise/config.hpp"
 #include "initialise/init_all_supers_from_binary.hpp"
 #include "initialise/init_supers_from_binary.hpp"
 #include "initialise/initgbxsnull.hpp"
 #include "initialise/initialconditions.hpp"
 #include "initialise/timesteps.hpp"
+#include "observers/collect_data_for_simple_dataset.hpp"
 #include "observers/gbxindex_observer.hpp"
 #include "observers/massmoments_observer.hpp"
 #include "observers/nsupers_observer.hpp"
@@ -68,6 +69,7 @@
 #include "superdrops/motion.hpp"
 #include "superdrops/terminalvelocity.hpp"
 #include "zarr/fsstore.hpp"
+#include "zarr/simple_dataset.hpp"
 
 // ===================================================
 // COUPLED DYNAMICS
@@ -117,7 +119,6 @@ inline auto create_movement(const Config &config,
   const Motion<CartesianMaps> auto motion =
       CartesianMotion(tsteps.get_motionstep(), &step2dimlesstime, terminalv);
 
-  // const BoundaryConditions<CartesianMaps> auto boundary_conditions = NullBoundaryConditions{};
   const BoundaryConditions<CartesianMaps> auto boundary_conditions =
       AddSupersToDomain(config.get_addsuperstodomain());
 
@@ -128,7 +129,7 @@ inline auto create_movement(const Config &config,
 // ===================================================
 
 // ------------------------------
-// Null Micorphysical Process
+// Null Microphysical Process
 // ------------------------------
 inline MicrophysicalProcess auto create_microphysics(const Config &config,
                                                      const Timesteps &tsteps) {
@@ -140,61 +141,59 @@ inline MicrophysicalProcess auto create_microphysics(const Config &config,
 // OBSERVERS
 // ===================================================
 
-template <typename Store>
-inline Observer auto create_superdrops_observer(const unsigned int interval,
-                                                SimpleDataset<Store> &dataset, const int maxchunk) {
-  CollectDataForDataset<Store> auto sdid = CollectSdId(dataset, maxchunk);
-  CollectDataForDataset<Store> auto sdgbxindex = CollectSdgbxindex(dataset, maxchunk);
-  CollectDataForDataset<Store> auto xi = CollectXi(dataset, maxchunk);
-  CollectDataForDataset<Store> auto radius = CollectRadius(dataset, maxchunk);
-  CollectDataForDataset<Store> auto msol = CollectMsol(dataset, maxchunk);
-  CollectDataForDataset<Store> auto coord3 = CollectCoord3(dataset, maxchunk);
+template <typename Dataset, typename Store>
+inline Observer auto create_superdrops_observer(const unsigned int interval, Dataset& dataset,
+                                                Store& store, const int maxchunk) {
+  CollectDataForDataset<Dataset> auto sdid = CollectSdId(dataset, maxchunk);
+  CollectDataForDataset<Dataset> auto sdgbxindex = CollectSdgbxindex(dataset, maxchunk);
+  CollectDataForDataset<Dataset> auto xi = CollectXi(dataset, maxchunk);
+  CollectDataForDataset<Dataset> auto radius = CollectRadius(dataset, maxchunk);
+  CollectDataForDataset<Dataset> auto msol = CollectMsol(dataset, maxchunk);
+  CollectDataForDataset<Dataset> auto coord3 = CollectCoord3(dataset, maxchunk);
 
   const auto collect_sddata = coord3 >> msol >> radius >> xi >> sdgbxindex >> sdid;
-  return SuperdropsObserver(interval, dataset, maxchunk, collect_sddata);
+  return SuperdropsObserver(interval, dataset, store, maxchunk, collect_sddata);
 }
 
-template <typename Store>
-inline Observer auto create_gridboxes_observer(const unsigned int interval, SimpleDataset<Store> &dataset,
+template <typename Dataset>
+inline Observer auto create_gridboxes_observer(const unsigned int interval, Dataset& dataset,
                                                const int maxchunk, const size_t ngbxs) {
-  const CollectDataForDataset<Store> auto thermo = CollectThermo(dataset, maxchunk, ngbxs);
-  const CollectDataForDataset<Store> auto wvel =
-      CollectWindVariable<Store, WvelFunc>(dataset, WvelFunc{}, "wvel", maxchunk, ngbxs);
-  const CollectDataForDataset<Store> auto nsupers = CollectNsupers(dataset, maxchunk, ngbxs);
+  const CollectDataForDataset<Dataset> auto thermo = CollectThermo(dataset, maxchunk, ngbxs);
+  const CollectDataForDataset<Dataset> auto wvel =
+      CollectWindVariable<Dataset, WvelFunc>(dataset, WvelFunc{}, "wvel", maxchunk, ngbxs);
 
-  const CollectDataForDataset<Store> auto collect_gbxdata = nsupers >> wvel >> thermo;
+  const CollectDataForDataset<Dataset> auto nsupers = CollectNsupers(dataset, maxchunk, ngbxs);
+
+  const CollectDataForDataset<Dataset> auto collect_gbxdata = nsupers >> wvel >> thermo;
   return WriteToDatasetObserver(interval, dataset, collect_gbxdata);
 }
 
-template <typename Store>
-inline Observer auto create_observer(const Config &config, const Timesteps &tsteps,
-                                     SimpleDataset<Store> &dataset) {
+template <typename Dataset, typename Store>
+inline Observer auto create_observer(const Config& config, const Timesteps& tsteps,
+                                     Dataset& dataset, Store& store) {
   const auto obsstep = tsteps.get_obsstep();
   const auto maxchunk = config.get_maxchunk();
   const auto ngbxs = config.get_ngbxs();
 
-  // const Observer auto obsstats = RunStatsObserver(obsstep, config.get_stats_filename());
-
   const Observer auto obsstreamout = StreamOutObserver(realtime2step(240), &step2realtime);
 
-  const Observer auto obstime = TimeObserver(obsstep, dataset, maxchunk, &step2dimlesstime);
+  const Observer auto obstime = TimeObserver(obsstep, dataset, store, maxchunk, &step2dimlesstime);
 
-  const Observer auto obsgindex = GbxindexObserver(dataset, maxchunk, ngbxs);
+  const Observer auto obsgindex = GbxindexObserver(dataset, store, maxchunk, ngbxs);
 
   const Observer auto obsnsupers = NsupersObserver(obsstep, dataset, maxchunk, ngbxs);
 
-  const Observer auto obsmm = MassMomentsObserver(obsstep, dataset, maxchunk, ngbxs);
+  const Observer auto obsmm = MassMomentsObserver(obsstep, dataset, store, maxchunk, ngbxs);
 
-  const Observer auto obsmmrain = MassMomentsRaindropsObserver(obsstep, dataset, maxchunk, ngbxs);
+  const Observer auto obsmmrain = MassMomentsRaindropsObserver(obsstep, dataset, store, maxchunk, ngbxs);
 
   const Observer auto obsgbx = create_gridboxes_observer(obsstep, dataset, maxchunk, ngbxs);
 
-  const Observer auto obssd = create_superdrops_observer(obsstep, dataset, maxchunk);
+  const Observer auto obssd = create_superdrops_observer(obsstep, dataset, store, maxchunk);
 
-  const Observer auto obscond = MonitorCondensationObserver(obsstep, dataset, maxchunk, ngbxs);
+  const Observer auto obscond = MonitorCondensationObserver(obsstep, dataset, store, maxchunk, ngbxs);
 
   return obscond
-        // >> obsstats
         >> obsstreamout
         >> obstime
         >> obsgindex
@@ -210,30 +209,21 @@ inline Observer auto create_observer(const Config &config, const Timesteps &tste
 // MAIN SUPER DROPLET MODEL
 // ===================================================
 
-template <typename Store>
-inline auto create_sdm(const Config &config, const Timesteps &tsteps, SimpleDataset<Store> &dataset) {
+template <typename Dataset, typename Store>
+inline auto create_sdm(const Config& config, const Timesteps& tsteps, Dataset& dataset,
+                       Store& store) {
   const auto couplstep = (unsigned int)tsteps.get_couplstep();
-  const GridboxMaps auto gbxmaps(create_gbxmaps(config));
-  const MicrophysicalProcess auto microphys(create_microphysics(config, tsteps));
-  const MoveSupersInDomain movesupers(create_movement(config, tsteps, gbxmaps));
-  const Observer auto obs(create_observer(config, tsteps, dataset));
+  const GridboxMaps auto gbxmaps = create_gbxmaps(config);
+  const MicrophysicalProcess auto microphys = create_microphysics(config, tsteps);
+  const MoveSupersInDomain movesupers = create_movement(config, tsteps, gbxmaps);
+  const Observer auto obs = create_observer(config, tsteps, dataset, store);
 
   return SDMMethods(couplstep, gbxmaps, microphys, movesupers, obs);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   if (argc < 2) {
     throw std::invalid_argument("configuration file(s) not specified");
-  }
-
-  MPI_Init(&argc, &argv);
-
-  int comm_size;
-  MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
-  if (comm_size > 1) {
-    std::cout << "ERROR: The current example is not prepared"
-              << " to be run with more than one MPI process" << std::endl;
-    MPI_Abort(MPI_COMM_WORLD, 1);
   }
 
   Kokkos::Timer kokkostimer;
@@ -241,6 +231,16 @@ int main(int argc, char *argv[]) {
   /* Read input parameters from configuration file(s) */
   const std::filesystem::path config_filename(argv[1]);  // path to configuration file
   const Config config(config_filename);
+
+  /* Initialize Communicator here */
+  init_communicator init_comm(argc, argv, config);
+
+  /* Prevent this example from running with more than one MPI process */
+  const auto comm_size = init_communicator::get_comm_size();
+  if (comm_size > 1) {
+    throw std::invalid_argument(
+        "ERROR: The current example is not prepared to be run with more than one MPI process");
+  }
 
   /* Initialise Kokkos parallel environment */
   Kokkos::initialize(config.get_kokkos_initialization_settings());
@@ -255,11 +255,11 @@ int main(int argc, char *argv[]) {
     auto dataset = SimpleDataset(store);
 
     /* CLEO Super-Droplet Model (excluding coupled dynamics solver) */
-    const SDMMethods sdm(create_sdm(config, tsteps, dataset));
+    const SDMMethods sdm = create_sdm(config, tsteps, dataset, store);
 
     /* Solver of dynamics coupled to CLEO SDM */
-    CoupledDynamics auto coupldyn(
-        create_coupldyn(config, sdm.gbxmaps, tsteps.get_couplstep(), tsteps.get_t_end()));
+    CoupledDynamics auto coupldyn =
+        create_coupldyn(config, sdm.gbxmaps, tsteps.get_couplstep(), tsteps.get_t_end());
 
     /* coupling between coupldyn and SDM */
       const CouplingComms<CartesianMaps, FromFileDynamics> auto comms = FromFileComms{};
@@ -273,11 +273,8 @@ int main(int argc, char *argv[]) {
   }
   Kokkos::finalize();
 
-
   const auto ttot = double{kokkostimer.seconds()};
-  std::cout << "-----\n Total Program Duration: " << ttot << "s \n-----\n";
-
-  MPI_Finalize();
+  std::cout << "-----\n CLEO Total Program Duration: " << ttot << "s \n-----\n";
 
   return 0;
 }
