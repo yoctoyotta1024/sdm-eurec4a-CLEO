@@ -4,12 +4,12 @@ set -e
 source /etc/profile
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 bashsrc=${SCRIPT_DIR}
-cleo_yac_module_path="${CLEO_PATH2CLEO}/libs/coupldyn_yac/cmake"
+cleo_yac_module_path="${CLEO_PATH2BUILD}/_deps/cleo-src/libs/coupldyn_yac/cmake"
 
 ### -------------------- check inputs ------------------ ###
 source ${bashsrc}/check_inputs.sh
 check_args_not_empty "${CLEO_PATH2CLEO}" "${CLEO_COMPILERNAME}" \
-  "${CLEO_CXX_COMPILER}" "${CLEO_YACYAXTROOT}"
+  "${CLEO_CXX_COMPILER}" "${CLEO_YACYAXTROOT}" "${CLEO_PATH2BUILD}"
 
 if  [[ "${CLEO_COMPILERNAME}" == "gcc" &&
        "${CLEO_CXX_COMPILER}" != "/sw/spack-levante/openmpi-4.1.2-mnmady/bin/mpic++" ]]
